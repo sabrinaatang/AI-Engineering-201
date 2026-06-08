@@ -87,34 +87,34 @@ def main():
             save_chunks(chunks, output_dir, f"document_{i + 1}")
             print(f"Processed {len(chunks)} chunks for URL {i + 1}")
 
-# def main():
-#     # Define output directory
-#     output_dir = "processed_chunks"
+def main():
+    # Define output directory
+    output_dir = "processed_chunks"
 
-#     # Count number of chunks
-#     total_chunks = 0
-#     # Process each URL
-#     for i, url in enumerate(URLS):
-#         print(f"Scraping URL {i + 1}/{len(URLS)}: {url}")
-#         raw_text = scrape_url(url)
-#         if raw_text:
-#             cleaned_text = clean_text(raw_text)
-#             chunks = chunk_text(cleaned_text, CHUNK_SIZE, OVERLAP)
-#             save_chunks(chunks, output_dir, f"url_{i + 1}")
+    # Count number of chunks
+    total_chunks = 0
+    # Process each URL
+    for i, url in enumerate(URLS):
+        print(f"Scraping URL {i + 1}/{len(URLS)}: {url}")
+        raw_text = scrape_url(url)
+        if raw_text:
+            cleaned_text = clean_text(raw_text)
+            chunks = chunk_text(cleaned_text, CHUNK_SIZE, OVERLAP)
+            save_chunks(chunks, output_dir, f"url_{i + 1}")
 
-#             # Increment chunk counter
-#             total_chunks += len(chunks)
+            # Increment chunk counter
+            total_chunks += len(chunks)
 
-#             # Print 5 random chunks for verification
-#             print(f"\n--- Verifying chunks for URL {i + 1} ---")
-#             if len(chunks) > 5:
-#                 random_chunks = random.sample(chunks, 5)
-#             else:
-#                 random_chunks = chunks  # If fewer than 5 chunks, print all
-#             for j, chunk in enumerate(random_chunks):
-#                 print(f"Random Chunk {j + 1}:\n{chunk}\n")
+            # Print 5 random chunks for verification
+            print(f"\n--- Verifying chunks for URL {i + 1} ---")
+            if len(chunks) > 5:
+                random_chunks = random.sample(chunks, 5)
+            else:
+                random_chunks = chunks  # If fewer than 5 chunks, print all
+            for j, chunk in enumerate(random_chunks):
+                print(f"Random Chunk {j + 1}:\n{chunk}\n")
 
-#     print(f"\nTotal number of chunks processed: {total_chunks}")
+    print(f"\nTotal number of chunks processed: {total_chunks}")
 
 # if __name__ == "__main__":
 #     main()

@@ -124,8 +124,8 @@ In production, I would prioritize a balance between accuracy and latency. While 
      "I'll give Claude my Chunking Strategy section and ask it to implement chunk_text()
      with my specified chunk size and overlap" is a plan. -->
 
-**Milestone 3 — Ingestion and chunking:**
+**Milestone 3 — Ingestion and chunking: I asked Copilot to help me convert my PDF ingestion pipeline to a URL one.**
 
-**Milestone 4 — Embedding and retrieval:**
+**Milestone 4 — Embedding and retrieval: I asked Copilot to help me generate an embedding and retrieval function after I ran into several bugs with failed retrieval and used top 5 results to give concise, accurate, answers.**
 
-**Milestone 5 — Generation and interface:**
+**Milestone 5 — Generation and interface: I asked Copilot to help me write the UI portion because I was able to create a Groc client but not able to generate a response then populate it into the UI.**

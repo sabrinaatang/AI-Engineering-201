@@ -59,13 +59,31 @@ def generate_grounded_response(question):
 def gradio_interface(question):
     return generate_grounded_response(question)
 
-# Gradio app
+# Gradio app with brighter UI
 with gr.Blocks() as demo:
-    gr.Markdown("## Grounded Question Answering")
+    gr.Markdown(
+        """
+        <div style="text-align: center; font-size: 24px; font-weight: bold; color: #4CAF50;">
+            🌟 Grounded Question Answering 🌟
+        </div>
+        """,
+        elem_classes="bright-ui"
+    )
     with gr.Row():
-        question_input = gr.Textbox(label="Enter your question", placeholder="Type your question here...")
-        answer_output = gr.Textbox(label="Answer", interactive=False)
-    submit_button = gr.Button("Submit")
+        question_input = gr.Textbox(
+            label="Enter your question",
+            placeholder="Type your question here...",
+            elem_classes="bright-ui"
+        )
+        answer_output = gr.Textbox(
+            label="Answer",
+            interactive=False,
+            elem_classes="bright-ui"
+        )
+    submit_button = gr.Button(
+        "Submit",
+        elem_classes="bright-ui"
+    )
     submit_button.click(gradio_interface, inputs=question_input, outputs=answer_output)
 
 # Run the Gradio app
