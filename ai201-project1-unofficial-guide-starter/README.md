@@ -13,7 +13,7 @@
      Why is this knowledge valuable, and why is it hard to find through official channels?
      Example: "Student reviews of CS professors at [university] — useful because official
      course descriptions don't reflect teaching style, exam difficulty, or workload." -->
-
+The domain of my choice is information regarding the undergraduate experience at the University of California, Irvine. THe information from sources I've chosen span a range of topics from registration, housing resources, navigating difficult courses, etc. This knowledge isn't well known for students learning to live and study for the first time in their lives. A lot of the Reddit information is knowledge passed down from past students which alleviates a bit of the learning curve and builds a sense of community.
 ---
 
 ## Document Sources
@@ -24,16 +24,18 @@
 
 | # | Source | Type | URL or file path |
 |---|--------|------|-----------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
-| 10 | | | |
+| 1 |Reddit | Website|https://www.reddit.com/r/UCI/
+| 2 |Reddit |Website |https://www.reddit.com/r/UCI/comments/1jckpkn/first_year_housing_scoop/
+| 3 |Reddit |Website |https://www.reddit.com/r/UCI/comments/1jh388v/current_incoming_2029_students_faq_megathread/
+| 4 |Reddit | Website|https://www.reddit.com/r/UCI/comments/w1ooph/how_to_request_assistance_in_a_time_of_crisis/
+| 5 | Reddit| Website|https://www.reddit.com/r/UCI/comments/vfp0la/uci_housing_megathread_20222023/
+| 6 |UCI Official Site|Website |https://www.admissions.uci.edu/study/majors-minors.php?type=Major
+| 7 |Reddit | Website|https://www.reddit.com/r/UCI/comments/1d25n2j/
+| 8 | Reddit|Website |https://www.reddit.com/r/UCI/comments/1d25n2j/comp_sci_majors_are_you_struggling_to_find_a_job/
+| 9 | Reddit|Website |https://www.reddit.com/r/UCI/comments/194da57/why_are_cs_majors_so_gross/
+| 10 |Reddit | Website|https://www.reddit.com/r/UCI/comments/1t57ayb/tips_for_prospective_undergraduate_cs_majors_at/
+| 11 |Reddit |Website |https://www.reddit.com/r/UCI/comments/1sy66rb/uci_international_students_fall_2026_winter_2027/
+
 
 ---
 
