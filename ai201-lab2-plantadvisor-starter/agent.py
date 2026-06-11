@@ -86,6 +86,7 @@ SYSTEM_PROMPT = (
 def dispatch_tool(tool_name: str, tool_args: dict) -> str:
     """Route a tool call to the correct function and return the result as a JSON string."""
     print(f"  → Tool call: {tool_name}({tool_args})")
+    tool_args = tool_args or {}
     if tool_name == "lookup_plant":
         result = lookup_plant(tool_args["plant_name"])
     elif tool_name == "get_seasonal_conditions":
@@ -128,4 +129,52 @@ def run_agent(user_message: str, history: list) -> str:
 
     Before writing code, complete specs/agent-loop-spec.md.
     """
-    return "🌱 Agent not yet implemented. Complete Milestone 2 to activate the Plant Advisor."
+
+    # Step 1: Build the messages list
+    messages = [{"role": "system", "content": SYSTEM_PROMPT}]
+    for user_msg, assistant_msg in history:
+        messages.append({"role": "user", "content": user_msg})
+        messages.append({"role": "assistant", "content": assistant_msg})
+    messages.append({"role": "user", "content": user_message})
+
+    # Initialize tool rounds counter
+    tool_rounds = 0
+
+    while True:
+        # Call LLm with msg and TOOL_DEFINITIONS
+        response = _client.chat.completions.create(
+                model=LLM_MODEL,
+                messages=messages,
+                tools=TOOL_DEFINITIONS,
+                tool_choice="auto",
+            )
+        assistant_message = response.choices[0].message
+
+        # Step 3: Check if the response contains tool_calls
+        if assistant_message.tool_calls:
+            # Step 3a: Append the assistant message (with tool_calls) to messages
+            messages.append(assistant_message)
+
+            # Step 3b: For each tool call, execute via dispatch_tool() and append the result
+            for tool_call in assistant_message.tool_calls:
+                tool_name = tool_call.function.name
+                tool_args = json.loads(tool_call.function.arguments) if tool_call.function.arguments else {}
+                tool_result = dispatch_tool(tool_name, tool_args)
+
+                # Append the tool result message
+                messages.append({
+                    "role": "tool",
+                    "tool_call_id": tool_call.id,
+                    "content": tool_result,
+                })
+
+            # Increment the tool rounds counter
+            tool_rounds += 1
+
+            # Step 3d: Check if MAX_TOOL_ROUNDS is reached
+            if tool_rounds >= MAX_TOOL_ROUNDS:
+                return "Maximum tool rounds reached. Unable to complete the request."
+
+        else:
+            # Step 4: Return the final text response
+            return assistant_message.content

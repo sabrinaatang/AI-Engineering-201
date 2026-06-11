@@ -122,7 +122,7 @@ for tool_call in assistant_message.tool_calls:
 *The loop should stop when: (a) the LLM returns a response with no tool calls, OR (b) the MAX_TOOL_ROUNDS limit is reached. Describe how you will detect each condition and what you will return in each case.*
 
 ```
-[your answer here]
+If no tools are found and content is not empty then I'll return the content. Or if max tool rounds is reached and no content, then I will explicitly state "no matching tool or information could be found" so the user is informed right away. Otherwise, return whatever content is generated.
 ```
 
 ---
@@ -132,7 +132,8 @@ for tool_call in assistant_message.tool_calls:
 *Once the loop exits because there are no more tool calls, how do you extract the text content from the response object? What field holds the string you should return?*
 
 ```
-[your answer here]
+The response is located in the "content" field of the returned object.
+final_text = response["content"] 
 ```
 
 ---
@@ -144,20 +145,21 @@ for tool_call in assistant_message.tool_calls:
 **Trace of a working agent turn (what tools were called and in what order):**
 
 ```
-Query: "How should I care for my calathea?"
-Round 1 tool call: [tool name, args]
-Round 2 tool call: [tool name, args] (if any)
-Final response: [brief description]
+Query: "How do I care for my pothos?"
+→ Tool call: lookup_plant({'plant_name': 'pothos'})
+← Result: {"found": true, "plant": {"display_name": "Pothos", "scientific_name": "Epipremnum aureum", "aliases": ["golden pothos",...
+Final response: According to the care data for your pothos, this plant is easy to care for and can thrive in a variety of lighting conditions, from low to bright indirect light. It's important to allow the top inch of soil to dry out between waterings, as overwatering can lead to yellowing leaves, mushy stems, and root rot. Underwateri...
 ```
 
 **What happens when you ask about a plant that isn't in the database?**
 
 ```
-[describe the behavior you observed]
+Example: Tell me about xyz plant.
+Response: I couldn't find any information on the 'xyz plant' in my database. It's possible that it's a lesser-known or newly discovered plant. If you can provide more context or details about the plant, such as its appearance or origin, I may be able to offer some general guidance on its care. Alternatively, you can also try searching for the plant online or consulting with a local nursery or gardening expert for more information.
 ```
 
 **One thing about the tool call API that surprised you:**
 
 ```
-[your answer here]
+I needed to ensure that tool_args defaulted to an empty dictionary if no tool arguments were given or else a TypeError would break the chat.
 ```
